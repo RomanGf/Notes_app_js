@@ -168,6 +168,17 @@ function getNoteHtmlRow(note, index) {
   `
 }
 
+function getNoteCategoryHtmlRow(category, unarhived, archived) {
+  return `
+    <div class="notes__row">
+        <p class="notes__header-item">${category}</p>
+        <p class="notes__header-item">${unarhived}</p>
+        <p class="notes__header-item">${archived}</p>
+        
+    </div>
+  `
+}
+
 function renderNotesTableRows(isArhivedMode) {
   let notesList = getNotesOrEmptyList(isArhivedMode ? ARCHIVED_NOTES_KEY : NOTES_KEY);
   let html = "";
@@ -176,6 +187,22 @@ function renderNotesTableRows(isArhivedMode) {
     html += getNoteHtmlRow(note, index);
   });
   const notesContainer = document.getElementById("notes");
+  notesContainer.innerHTML = notesList.length !== 0 ? html : `No Notes Yet! Add a note using the form above.`;
+}
+
+function renderNotesCatagoryTableRows() {
+  let notesList = getAllNotes();
+  let html = "";
+  optionValues
+    .forEach(function (category) {
+      const unarchived = notesList.filter(x => x.category == category && x.archived == false).length;
+      const archived = notesList.filter(x => x.category == category && x.archived == true).length;
+
+      html += unarchived === 0 && archived === 0 
+      ? ''
+      : getNoteCategoryHtmlRow(category, unarchived, archived);
+    });
+  const notesContainer = document.getElementById("category_static");
   notesContainer.innerHTML = notesList.length !== 0 ? html : `No Notes Yet! Add a note using the form above.`;
 }
 
