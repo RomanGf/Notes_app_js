@@ -190,7 +190,7 @@ function renderNotesTableRows(isArhivedMode) {
   notesContainer.innerHTML = notesList.length !== 0 ? html : `No Notes Yet! Add a note using the form above.`;
 }
 
-function renderNotesCatagoryTableRows() {
+function renderNotesCategoryTableRows() {
   let notesList = getAllNotes();
   let html = "";
   optionValues
@@ -215,7 +215,7 @@ function render() {
   const isArhivedMode = JSON.parse(localStorage.getItem(ARCHIVED_MODE));
   renderNotesHeaderTitle(isArhivedMode);
   renderNotesTableRows(isArhivedMode);
-  renderNotesCatagoryTableRows();
+  renderNotesCategoryTableRows();
 }
 
 localStorage.setItem(ARCHIVED_MODE, 'false')
