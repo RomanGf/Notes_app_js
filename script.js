@@ -14,6 +14,10 @@ const ARCHIVED_NOTES_KEY = 'archived_notes'
 const ARCHIVED_MODE = 'archived_mode'
 const EDIT_NOTE_ID = 'edit_note_id'
 
+const selectCategory = document.querySelectorAll("[id='note__category']");
+let optionValues = [...selectCategory[0].options].map(o => o.value)
+
+
 
 function createNote() {
 
@@ -35,6 +39,85 @@ function createNote() {
   render();
 }
 
+function deleteNote(noteId) {
+  const confirmDel = confirm("Delete this note?");
+
+  if (!confirmDel) {
+    return;
+  }
+
+  const notesList = getAllNotes();
+  const filteredNotes = notesList.filter(note => note.id !== noteId);
+
+  const activeNotes = filteredNotes.filter(x => !x.archived);
+  setNotesToLocalStorage(activeNotes);
+  
+  const archivedNotes = filteredNotes.filter(x => x.archived);
+  setNotesToLocalStorage(archivedNotes, ARCHIVED_NOTES_KEY);
+  
+  render();
+}
+
+function editNote(noteId) {
+  setNotesIdToLocalStorage(noteId, EDIT_NOTE_ID)
+
+}
+
+function updateNote() {
+  const noteToEditId = +localStorage.getItem(EDIT_NOTE_ID)
+
+  const noteList = getAllNotes()
+  const noteToEdit = noteList.find(x => x.id === noteToEditId)
+
+  const new_title = document.getElementById("note_new_title").value
+  const new_desc = document.getElementById("note_new_desc").value
+  const new_category = document.getElementById("note__category_edit").value
+  const new_date = getNoteDate(new_desc)
+
+  if (!new_title || !new_desc) {
+    return alert("Please add Note Title and Details")
+  }
+
+  noteToEdit.title = new_title
+  noteToEdit.text = new_desc
+  noteToEdit.category = new_category
+  noteToEdit.dates = noteToEdit.date_created + "-" + new_date
+  
+  const activeNotes = noteList.filter(x => !x.archived);
+  setNotesToLocalStorage(activeNotes);
+  
+  const archivedNotes = noteList.filter(x => x.archived);
+  setNotesToLocalStorage(archivedNotes, ARCHIVED_NOTES_KEY);
+  localStorage.setItem(EDIT_NOTE_ID, '')
+
+  const checkBox = document.getElementById("modal__checkbox")
+  checkBox.checked = !checkBox.checked
+
+  render()
+}
+
+function deleteAllNotes() {
+  setNotesToLocalStorage([])
+  setNotesToLocalStorage([], ARCHIVED_NOTES_KEY)
+  render();
+}
+
+function showArhivedNotes() {
+  const mode = !JSON.parse(localStorage.getItem(ARCHIVED_MODE));
+  localStorage.setItem(ARCHIVED_MODE, JSON.stringify(mode));
+  render();
+}
+
+function toggleNoteArchivation(noteId) {
+  const notesList = getAllNotes();
+  const toggledNotes = notesList.map(note => {
+    note.archived = note.id === noteId ? !note.archived : note.archived;
+    return note;
+  })
+  setNotesToLocalStorage(toggledNotes.filter(x => x.archived), ARCHIVED_NOTES_KEY)
+  setNotesToLocalStorage(toggledNotes.filter(x => !x.archived));
+  render()
+}
 
 function getNoteDate(desc) {
   const regexp =  /(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})(?=\W)|\b(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])?|(?:(?:16|[2468][048]|[3579][26])00)?)))(?=\W)|\b(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))(\4)?(?:(?:1[6-9]|[2-9]\d)?\d{2})?(?=\b)/g;
@@ -105,6 +188,7 @@ function render() {
   const isArhivedMode = JSON.parse(localStorage.getItem(ARCHIVED_MODE));
   renderNotesHeaderTitle(isArhivedMode);
   renderNotesTableRows(isArhivedMode);
+  renderNotesCatagoryTableRows();
 }
 
 localStorage.setItem(ARCHIVED_MODE, 'false')
