@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modal-styles.css">
+    <link rel="stylesheet" href="utility.css">
+    <script src="https://kit.fontawesome.com/1324f0f2d1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="wrapper">
+                <h1>My Notes App</h1>
+                <form>
+                    <input type="text" id="note-title" placeholder="Note title">
+                    <textarea id="note-text" placeholder="Note Details"></textarea>
+                    <select id="note__category">
+                        <option value="Task">Task</option>
+                        <option value="Random Thought" selected>Random Thought</option>
+                        <option value="Idea">Idea</option>
+                    </select>
+                    <button class="btn text-bold" onclick="createNote()">Add Note</button>
+                </form>
+    
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <i class="fa-solid fa-folder-arrow-down"></i>
+            <h2 id="notes__header-title">Your Notes</h2>
+            <div class="notes__header-row">
+                <div class="notes__header-item f-grow">Name</div>
+                <div class="notes__header-item">Created</div>
+                <div class="notes__header-item">Category</div>
+                <div class="notes__header-item">Content</div>
+                <div class="notes__header-item f-grow">Dates</div>
+                <div class="notes__header-item flex">
+                    <i class="fa-solid fa-box-archive m-x-sm" onclick="showArhivedNotes()"></i>
+                    <i class="fa-solid fa-trash m-x-sm" onclick="deleteAllNotes()"></i>
+                </div>
+            </div>
+            <div id="notes">
+            </div>
+            <div class="modal">
+                <input id="modal__checkbox" type="checkbox">
+                <div class="modal__window">
+                  <div class="modal__content">
+                    <label class="modal__close-icon" for="modal__checkbox">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </label>
+                    <div>
+                        <label for=""></label>
+                        <input type="text" placeholder="new title" id="note_new_title">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="new desc" id="note_new_desc">
+                    </div>
+                    <div>
+                        <select id="note__category_edit">
+                            <option value="Task">Task</option>
+                            <option value="Random Thought" selected>Random Thought</option>
+                            <option value="Idea">Idea</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="update_btn" onclick="updateNote()">Update</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="container">
+            <i class="fa-solid fa-folder-arrow-down"></i>
+            <div class="notes__header-row">
+                <div class="notes__category-item f-grow">Note Category</div>
+                <div class="notes__category-item">Active</div>
+                <div class="notes__category-item f-grow">Arhived</div>
+            </div>
+            <div id="notes-statistic">
+            </div>
+            <div id="category_static">
+            </div>
+        </div>
+    </section>
+
+    
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
