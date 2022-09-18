@@ -1,0 +1,62 @@
+.modal {
+    width: 0;
+    height: 0;
+    transition: 1s;
+}
+
+#modal__checkbox {
+    display: none;
+}
+
+#modal__checkbox:checked~div {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__window {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s;
+}
+
+.modal__content {
+    width: 50%;
+    background: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 2rem;
+    border-radius: 0.4rem;
+}
+
+.modal__close-icon {
+    cursor: pointer;
+    margin: 0.4rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #657ced;
+}
+
+.modal__close-icon .fa-circle-xmark {
+    font-size: 20px;
+}
+
+#note_new_title {
+    width: 100%;
+}
+
+#note_new_desc{
+    width: 100%;
+}
+
+#note__category_edit{
+    width: 100%;
+}

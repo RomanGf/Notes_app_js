@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+
+:root {
+    --white: #fff;
+    --black: #1c2b2d;
+    --blue: #31326f;
+    --color-primary: #9d0191;
+    --color-sec: #db6400;
+    --color-grey: #eee;
+    --dark-grey: rgb(73, 71, 71);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+header h1 {
+    color: var(--dark-grey);
+    line-height: 2;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+
+}
+
+#notes_created_form > * {
+    margin-bottom: 5px;
+    outline: none;
+    font-size: 1.2rem;
+    padding: 7px;
+    border: 1px solid #777;
+    border-radius: 0.2rem;
+}
+
+#note-text {
+    padding: 7px 0 40px 5px;
+    font-size: 1.2rem;
+    font-family: inherit;
+}
+
+
+
+/********************** FONT AWASOME STYLES START *************************/
+
+.fa-solid {
+  cursor: pointer;
+}
+/********************** FONT AWASOME STYLES END *************************/
+
+
+
+/********************** START OF NOTES HEADER ROW *************************/
+
+.notes__header-row {
+    background: rgb(73, 71, 71);
+    display: flex;;
+    justify-content: space-around;
+    padding: 0.4rem 0px;
+    overflow: hidden;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.notes__row {
+    display: flex;;
+    justify-content: space-around;
+    padding: 0.4rem 0px;
+    overflow: hidden;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid black;
+    margin-bottom: 0.3rem;
+    align-items: center;
+}
+
+.notes__header-item {
+    height: 100%;
+    color: #ccc;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+    width: 17%;
+}
+
+.notes__category-item {
+    height: 100%;
+    color: #ccc;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+    width: 33%;
+} 
+
+
+.f-grow {
+    flex-grow: 2;
+}
+
+/********************** END OF NOTES HEADER ROW *************************/
