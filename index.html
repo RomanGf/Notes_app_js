@@ -7,14 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="modal-styles.css">
     <link rel="stylesheet" href="utility.css">
-
     <script src="https://kit.fontawesome.com/1324f0f2d1.js" crossorigin="anonymous"></script>
-    
-    <script type="module" src="createNote.js"></script>
-    <script type="module" src="deleteNote.js"></script>
-    <script type="module" src="setters.js"></script>
-    <script type="module" src="editNote.js"></script>
-    <script type="module" src="getters.js"></script>
 </head>
 <body>
     <header>
@@ -47,7 +40,7 @@
                 <div class="notes__header-item">Content</div>
                 <div class="notes__header-item f-grow">Dates</div>
                 <div class="notes__header-item flex">
-                    <i class="fa-solid fa-box-archive m-x-sm" onclick="showArhivedNotes()"></i>
+                    <i class="fa-solid fa-box-archive m-x-sm" onclick="showArchivedNotes()"></i>
                     <i class="fa-solid fa-trash m-x-sm" onclick="deleteAllNotes()"></i>
                 </div>
             </div>
@@ -85,7 +78,7 @@
             <div class="notes__header-row">
                 <div class="notes__category-item f-grow">Note Category</div>
                 <div class="notes__category-item">Active</div>
-                <div class="notes__category-item f-grow">Arhived</div>
+                <div class="notes__category-item f-grow">Archived</div>
             </div>
             <div id="notes-statistic">
             </div>
@@ -95,7 +88,8 @@
     </section>
 
     
-    <script type="module" src="script.js"></script>
-  
+    
+
+    <script src="./js/script.js" type="module"></script>
 </body>
 </html>
